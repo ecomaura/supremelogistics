@@ -74,3 +74,9 @@ footer .c{border-top:1px solid #ffffff1f;margin-top:36px;padding-top:20px;font-s
 @media(max-width:900px){.hero .w,.two,.row,footer .g{grid-template-columns:1fr;gap:34px}.stats .w,.ind{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}section{padding:64px 0}.hero{padding-top:52px}.row:nth-of-type(even)>:first-child{order:0}
 nav{order:3;width:100%;overflow-x:auto;padding-bottom:8px}.stats div:nth-child(3){border-left:0;padding-left:0}.band:after{display:none}.card p{max-height:90px;opacity:1;margin-top:8px}.r2{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;transition:none!important}.line i{left:calc(100% - 44px)}}
+
+/* Floating WhatsApp contact button */
+.wa-float{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:9px;padding:13px 18px;border-radius:999px;background:#20b85a;color:#fff;text-decoration:none;font:700 15px/1 "Public Sans",system-ui,sans-serif;box-shadow:0 8px 28px #0004;transition:transform .18s,box-shadow .18s}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 12px 32px #0005}
+.wa-float svg{width:23px;height:23px;flex:none}
+@media(max-width:600px){.wa-float{right:16px;bottom:16px;padding:13px;border-radius:50%}.wa-float span{display:none}.wa-float svg{width:26px;height:26px}}
