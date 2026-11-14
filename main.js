@@ -8,7 +8,7 @@ const STOCK_IMAGES={
 'ind-fmcg.jpg':'photo-1566576721346-d4a3b4eaeb55',
 'ind-manufacturing.jpg':'photo-1581091226825-a6a2a5aee158',
 'ind-ecommerce.jpg':'photo-1586528116311-ad8dd3c8310d',
-'ind-packaging.jpg':'photo-1605600659873-d808a13e4d9a',
+'ind-packaging.jpg':'https://www.ecl-online.de/images/cm/content/Spedition/Lagerung.jpg',
 'driver.jpg':'photo-1516321318423-f06f85e504b3',
 'about-depot.jpg':'photo-1494412519320-aa613dfb7738',
 'about-team.jpg':'photo-1521737711867-e3b97375f902',
@@ -16,10 +16,10 @@ const STOCK_IMAGES={
 'fleet-gps.jpg':'photo-1551288049-bebda4e38f71',
 'fleet-20ft.jpg':'photo-1519003722824-194d4455a60c',
 'fleet-22ft.jpg':'photo-1601584115197-04ecc0da31d7',
-'fleet-32ft.jpg':'photo-1566933293069-b55c7f326dd4',
+'fleet-32ft.jpg':'https://nilachaltranslogistics.com/photos/12tyre-32ft.jpg',
 'routes-banner.jpg':'photo-1501706362039-c6e13d8a4e1d'
 };
-function ph(e){const s=e.dataset.src;if(!s)return;e.classList.remove('ok');$('.cap',e)?.remove();const id=STOCK_IMAGES[s]||STOCK_IMAGES['fleet-22ft.jpg'];const url='https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=1400&q=82';const i=new Image();i.onload=()=>{e.style.backgroundImage='linear-gradient(0deg,#0d1a3533,#0d1a3508),url("'+url+'")';e.classList.add('ok')};i.onerror=()=>{e.style.backgroundImage='linear-gradient(135deg,#14264b,#263e70)';e.classList.add('ok')};i.src=url}
+function ph(e){const s=e.dataset.src;if(!s)return;e.classList.remove('ok');$('.cap',e)?.remove();const source=STOCK_IMAGES[s]||STOCK_IMAGES['fleet-22ft.jpg'];const primary=source.startsWith('http')?source:'https://images.unsplash.com/'+source+'?auto=format&fit=crop&w=1400&q=82';const fallbacks=s==='ind-packaging.jpg'?['https://www.sakispack.gr/images/inside-images/product-images/ontoule-03.png']:s==='fleet-32ft.jpg'?['https://img.truckonwheels.com/cdn-cgi/image/width%3D1200%2Cquality%3D55%2Cformat%3Dauto/uploads/32-feet-truck-dimensions-in-india-1775031745336.webp']:[];const urls=[primary,...fallbacks];let n=0;const load=()=>{const i=new Image();i.onload=()=>{e.style.backgroundImage='linear-gradient(0deg,#0d1a3533,#0d1a3508),url("'+urls[n]+'")';e.classList.add('ok')};i.onerror=()=>{n++;if(n<urls.length)load();else{e.style.backgroundImage='linear-gradient(135deg,#14264b,#263e70)';e.classList.add('ok')}};i.src=urls[n]};load()}
 $$('.ph').forEach(e=>{if(e.dataset.src)ph(e)});
 const SZ=[['20 FT',62.5,'Compact and dense loads','Right-sized for high-value, heavy or smaller full-truckload consignments.','fleet-20ft.jpg','Side view of a 20 FT container truck'],['22 FT',69,'The balanced choice','For loads that outgrow a 20 FT without needing a full 32 FT trip.','fleet-22ft.jpg','Side view of a 22 FT container truck'],['32 FT',100,'Maximum volume per trip','Our largest container body for bulky and high-volume freight.','fleet-32ft.jpg','Side view of a 32 FT container truck']];
 $$('[data-sizes]').forEach(el=>{el.innerHTML=`<div class="two"><div><div class="tabs" role="tablist">${SZ.map((s,i)=>`<button role="tab" aria-selected="${i==1?0:0}" data-i="${i}">${s[0]}</button>`).join('')}</div><div class="cont"></div><div class="panel"><h3></h3><p></p><a class="btn" href="contact.html">Book this size</a></div></div><div class="ph r43" data-src="" data-cap=""></div></div>`;
@@ -34,3 +34,6 @@ $$('[data-tabs]').forEach(g=>{const b=$$('[role=tab]',g),p=$$('[role=tabpanel]',
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const n=+e.target.dataset.n,t=performance.now();(function f(x){const k=Math.min(1,(x-t)/1400);e.target.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t)}));$$('[data-n]').forEach(e=>io.observe(e));
 const q=$('#q');if(q){const u=new URLSearchParams(location.search);if(u.get('to'))q.b.value=u.get('to');if(u.get('size'))q.s.value=u.get('size');
 q.onsubmit=e=>{e.preventDefault();const f=new FormData(q),g=k=>f.get(k)||'-';window.open('https://wa.me/919970844585?text='+encodeURIComponent(`Quote request\nName: ${g('n')}\nPhone: ${g('p')}\nPickup: ${g('a')}\nDrop: ${g('b')}\nContainer: ${g('s')}\nCargo: ${g('c')}`),'_blank','noopener')}}
+
+// Floating WhatsApp contact shortcut (uses the primary number already published on the site).
+if(!document.querySelector('.wa-float')){const wa=document.createElement('a');wa.className='wa-float';wa.href='https://wa.me/919970844585?text='+encodeURIComponent('Hello Supreme Logistics, I would like to enquire about a transport quote.');wa.target='_blank';wa.rel='noopener noreferrer';wa.setAttribute('aria-label','Chat with Supreme Logistics on WhatsApp');wa.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.02 3.2A12.7 12.7 0 0 0 5.1 22.38L3.4 28.6l6.38-1.67A12.7 12.7 0 1 0 16.02 3.2Zm0 23.1c-1.96 0-3.88-.52-5.56-1.5l-.4-.24-3.79.99 1.01-3.69-.26-.42a10.37 10.37 0 1 1 9 4.86Zm5.7-7.77c-.31-.16-1.83-.9-2.12-1-.28-.1-.49-.16-.69.16-.21.31-.8 1-.98 1.2-.18.21-.36.24-.67.08-.31-.15-1.3-.48-2.47-1.52-.91-.81-1.52-1.82-1.7-2.13-.18-.31-.02-.48.14-.64.14-.14.31-.36.46-.54.16-.18.21-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.69-1.66-.95-2.27-.25-.59-.5-.51-.69-.52h-.59c-.21 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.56s1.1 2.97 1.26 3.18c.15.2 2.16 3.3 5.23 4.63.73.32 1.3.51 1.74.65.73.23 1.39.2 1.91.12.58-.09 1.83-.75 2.09-1.47.26-.72.26-1.33.18-1.47-.08-.13-.28-.21-.59-.36Z"/></svg><span>WhatsApp</span>';document.body.appendChild(wa)}
